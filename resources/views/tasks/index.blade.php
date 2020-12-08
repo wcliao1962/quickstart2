@@ -24,7 +24,7 @@
             <!-- 增加任務按鈕-->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
+                    <button type="submit" class="btn btn-primary">
                         <i class="fa fa-plus"></i> 增加任務
                     </button>
                 </div>
@@ -63,7 +63,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button>刪除任務</button>
+                                    <button type="submit" class="btn btn-danger">刪除任務</button>
                                 </form>
                             </td>
                         </tr>

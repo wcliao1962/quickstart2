@@ -12,7 +12,7 @@
 {{__('messages.hello', ['name'=>'李白'])}}
 <br>
 <hr>
-
+{{__('I love programming.')}}
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/sendmail', [\App\Http\Controllers\MailController::class, 'send']);
 
 Route::get('hello', function (){
-    return view('hello');
+       if(Request::has('lang')){
+           App::setLocale(Request::get('lang'));
+       }
+       return view('hello');
 });

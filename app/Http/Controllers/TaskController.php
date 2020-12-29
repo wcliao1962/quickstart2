@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderShipped;
+use App\Mail\TaskShipped;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -27,9 +30,14 @@ class TaskController extends Controller
             'name' => 'required|max:255',
         ]);
 
-        $request->user()->tasks()->create([
+        $task=$request->user()->tasks()->create([
             'name' => $request->name,
         ]);
+
+
+        Mail::to($request->user())
+            ->cc($request->user())
+            ->send(new TaskShipped($task));
 
         return redirect('/tasks');
 

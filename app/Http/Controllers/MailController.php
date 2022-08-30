@@ -9,13 +9,18 @@ class MailController extends Controller
 {
     public function send()
     {
-        $name='張三';
+        $recipient_name='張三';
+        $recipient_address='lwc32005@gmail.com';
+
+        $to = ['name' => $recipient_name, 'address' => $recipient_address];
+        $from = ['name' => 'admin', 'address'=>'wcliao1962@gmail.com'];
+        $subject = 'Laravel Mail Testing';
         $content='Welcome to Laravel 8. <br>This is a mail testing.<br>******';
-        $data = ['name' => $name, 'content'=> $content, ];
-        Mail::send('mail.test', $data, function($message) use($name) {
-            $message->subject('Laravel Mail Testing');
-            $message->to('lwc32005@gmail.com', $name);
-            $message->from('wcliao1962@gmail.com', 'admin');
+        $msg = ['name' => $recipient_name, 'content'=> $content, ];
+        Mail::send('mail.test', $msg, function($message) use($to, $from, $subject) {
+            $message->subject($subject);
+            $message->to($to['address'], $to['name']);
+            $message->from($from['address'], $from['name']);
         });
         return 'mail sent!';
 

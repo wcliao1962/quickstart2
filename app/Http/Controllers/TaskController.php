@@ -37,7 +37,7 @@ class TaskController extends Controller
 
         Mail::to($request->user())
             ->cc($request->user())
-            ->send(new TaskShipped($task));
+            ->queue(new TaskShipped($task));
 
         return redirect('/tasks');
 

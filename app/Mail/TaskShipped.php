@@ -38,6 +38,7 @@ class TaskShipped extends Mailable
                 'user'=> auth()->user(),
                 'task' => $this->task,
                 'url' => 'www.ncut.edu.tw',
-            ]);
+            ])
+            ->subject('新任務通知');
     }
 }
